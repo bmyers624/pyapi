@@ -6,7 +6,7 @@ true = ["T", "t", "True", "true"]
 false = ["F", "f", "False", "false"]
 correct = 0 #Storing the correct answers
 
-name = input ("Please input your name?") #Stores the user's name
+name = input ("Please input your name: ") #Stores the user's name
 
 print ("\nHello, " +  name +", let's begin the quiz. The following answers are only True or False.")
 time.sleep(2)
