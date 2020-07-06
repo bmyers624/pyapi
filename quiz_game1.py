@@ -9,7 +9,7 @@ correct = 0 #Storing the correct answers
 name = input ("Please input your name: ") #Stores the user's name
 
 print ("\nHello, " +  name +", let's begin the quiz. The following answers are only True or False.")
-time.sleep(2)
+time.sleep(3)
 
 print ("\nLondon is the captial of the United Kingdom.")
 choice = input(">>> ")
