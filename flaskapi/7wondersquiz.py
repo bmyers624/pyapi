@@ -18,24 +18,28 @@ quiz_questions = { # questions dictionary
 
 questions = copy.deepcopy(quiz_questions) # made deep copy of the original questions dictionary so that any changes made to the copy won't affect the original, i.e. 'shuffle'
 
-def shuffle(q): # created this function to shuffle the keys from the questions dictionary.
-    # could possibly fix problem by just calling 'random.shuffle(questions.keys())' instead of this
-    """
-    This function shuffles
-    the Quiz questions.
-    """
-    selected_keys = []
-    i = 0
-    while i < len(q):
-        current_selection = random.choice(q.keys())
-        if current_selection not in selected_keys:
-            selected_keys.append(current_selection)
-            i = i+1
-    return selected_keys
+#def shuffle(q): 
+#    # created this function to shuffle the keys from the questions dictionary.
+#    # could possibly fix problem by just calling 'random.shuffle(questions.keys())' instead of this
+#    """
+#    This function shuffles
+#    the Quiz questions.
+#    """
+#    selected_keys = []
+#    i = 0
+#    while i < len(q):
+#        current_selection = random.choice(q.keys())
+#        if current_selection not in selected_keys:
+#            selected_keys.append(current_selection)
+#            i = i+1
+#    return selected_keys
 
 @app.route('/')
 def quiz():
-    questions_shuffled = shuffle(questions) # the questions are being shuffled and the result is a list that is stored in variable 'questions_shuffled'
+#    questions_shuffled = shuffle(questions) # the questions are being shuffled and the result is a list that is stored in variable 'questions_shuffled'
+    questions_shuffled = random.choice(list(questions.items())) 
+    # the shuffle problem was fixed by replacing it with this command, in python3 d.keys() returns a dict_keys object
+    #  which is more like a set than a list, so it couldnt be indexed. Therefore the solution to the problem was to pass list(d.items()) to random
     for i in questions.keys(): # for loop to loop through keys of questions dictionary
         random.shuffle(questions[i]) # all values in list of questions are shuffled
     return render_template('main.html', q = questions_shuffled, o = questions) # the values are returned to template/main.html
